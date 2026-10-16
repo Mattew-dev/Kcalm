@@ -49,3 +49,6 @@ app.*.map.json
 
 # File .env per chiavi segrete
 .env
+
+# Documenti personali (guide, prototipo): restano solo in locale
+/docs/

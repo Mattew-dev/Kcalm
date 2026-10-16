@@ -1,3 +1,1 @@
-class BudgetcalculatorTest {
-  void main(){}
-}
+void main(){}
