@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kcalm/UI/pages/Layout.dart';
+import 'package:kcalm/UI/aspects/AppTheme.dart';
 
 class App extends StatelessWidget{
   const App({super.key});
@@ -8,18 +9,8 @@ class App extends StatelessWidget{
   Widget build(BuildContext context){
     return MaterialApp(
       title: 'Kcalm',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.green,
-          brightness: Brightness.light,
-        ),
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.green,
-          brightness: Brightness.dark,
-        ),
-      ),
+      theme: AppTheme.chiaro,
+      darkTheme: AppTheme.scuro,
       themeMode: ThemeMode.system,
       home: const Layout(),
     );

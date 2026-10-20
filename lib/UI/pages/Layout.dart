@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-//import 'package:kcalm/UI/pages/DiaryPage.dart';
-//import 'package:kcalm/UI/pages/AddFoodPage.dart';
-//import 'package:kcalm/UI/pages/WeightPage.dart';
-//import 'package:kcalm/UI/pages/ProfilePage.dart';
+import 'package:kcalm/UI/pages/DiaryPage.dart';
+import 'package:kcalm/UI/pages/AddFoodPage.dart';
+import 'package:kcalm/UI/pages/WeightPage.dart';
+import 'package:kcalm/UI/pages/ProfilePage.dart';
 
 class Layout extends StatefulWidget{
   const Layout({super.key});
@@ -14,6 +14,7 @@ class Layout extends StatefulWidget{
 class _LayoutState extends State<Layout>{
   int _indice = 0;
 
+  /// Navigation Bar
   @override
   Widget build(BuildContext context){
     return Scaffold(

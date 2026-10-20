@@ -25,6 +25,29 @@ void main(){
   });
 
 
+  // dailyBudget test
+  group('dailyBudget', (){
+    test('uomo, 27 anni, 178cm, 74.2kg, leggermente attivo, dimagrire -> 1970', (){
+      expect(
+        BudgetCalculator.dailyBudget(sesso: Sex.uomo, eta: 27, altezzaCm: 178, pesoKg: 74.2, attivita: ActivityLevel.leggermenteAttivo, obiettivo: Goal.dimagrire),
+        1970);
+    });
+    test('donna, 30 anni, 165cm, 60kg, sedentaria, mantenere', (){
+      expect(
+        BudgetCalculator.dailyBudget(sesso: Sex.donna, eta: 30, altezzaCm: 165, pesoKg: 60, attivita: ActivityLevel.sedentario, obiettivo: Goal.mantenere),
+        1580);
+    });
+    test('uomo, 25 anni, 180cm, 80kg, moderatamente attivo, auomentare', (){
+      expect(
+        BudgetCalculator.dailyBudget(sesso: Sex.uomo, eta: 25, altezzaCm: 180, pesoKg: 80, attivita: ActivityLevel.moderato, obiettivo: Goal.aumentare),
+        3100);
+    });
+    test('donna, 60 anni, 150cm, 45kg, sedentaria, diamagrire', (){
+      expect(
+        BudgetCalculator.dailyBudget(sesso: Sex.donna, eta: 60, altezzaCm: 150, pesoKg: 45, attivita: ActivityLevel.sedentario, obiettivo: Goal.dimagrire),
+        1200);
+    });
+  });
 
 
 }

@@ -1,4 +1,5 @@
 import 'package:kcalm/model/objects/Enums.dart';
+import 'dart:math';
 
 class BudgetCalculator {
 
@@ -8,6 +9,10 @@ class BudgetCalculator {
   static const coeffEta = 5;
   static const coeffSexUomo = 5;
   static const coeffSexDonna = -161;
+
+  ///parametri kcal
+  static const minimoGiornaliero = 1200;
+  static const passoArrotondamento = 10;
 
   BudgetCalculator._();
 
@@ -28,4 +33,13 @@ class BudgetCalculator {
     };
     return coeffPeso*pesoKg + coeffAltezza*altezzaCm - coeffEta*eta + s;
   }
+
+  /// Calcolatore budget calorico giornaliero
+  static int dailyBudget({required Sex sesso, required int eta, required double altezzaCm, required double pesoKg, required ActivityLevel attivita, required Goal obiettivo}){
+      double bmrCalc = BudgetCalculator.bmr(sesso: sesso, eta: eta, altezzaCm: altezzaCm, pesoKg: pesoKg);
+      double fabbisogno = bmrCalc * attivita.fattore + obiettivo.deltaKcal;
+      int arrotondamento = (fabbisogno/passoArrotondamento).round() * passoArrotondamento;
+      return max(minimoGiornaliero, arrotondamento);
+  }
+
 }
