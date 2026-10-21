@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kcalm/UI/App.dart';
 import 'package:kcalm/UI/pages/DiaryPage.dart';
 import 'package:kcalm/UI/pages/AddFoodPage.dart';
 import 'package:kcalm/UI/pages/WeightPage.dart';
@@ -19,6 +18,8 @@ class _LayoutState extends State<Layout>{
   /// Navigation Bar
   @override
   Widget build(BuildContext context){
+    final appLocalizations = AppLocalizations.of(context);
+
     return Scaffold(
       body: IndexedStack(
         index: _indice,
@@ -31,19 +32,19 @@ class _LayoutState extends State<Layout>{
           NavigationDestination(
               icon: const Icon(Icons.menu_book_outlined),
               selectedIcon: const Icon(Icons.menu_book),
-              label: AppLocalizations.of(context)!.translate('diary')),
+              label: appLocalizations.translate('diary')),
           NavigationDestination(
-              icon: Icon(Icons.add_circle_outline),
-              selectedIcon: Icon(Icons.add_circle),
-              label: AppLocalizations.of(context)!.translate('add')),
+              icon: const Icon(Icons.add_circle_outline),
+              selectedIcon: const Icon(Icons.add_circle),
+              label: appLocalizations.translate('add')),
           NavigationDestination(
-              icon: Icon(Icons.monitor_weight_outlined),
-              selectedIcon: Icon(Icons.monitor_weight),
-              label: AppLocalizations.of(context)!.translate('weight')),
+              icon: const Icon(Icons.monitor_weight_outlined),
+              selectedIcon: const Icon(Icons.monitor_weight),
+              label: appLocalizations.translate('weight')),
           NavigationDestination(
-              icon: Icon(Icons.person_outline),
-              selectedIcon: Icon(Icons.person),
-              label: AppLocalizations.of(context)!.translate('profile')),
+              icon: const Icon(Icons.person_outline),
+              selectedIcon: const Icon(Icons.person),
+              label: appLocalizations.translate('profile')),
         ],
       ),
     );

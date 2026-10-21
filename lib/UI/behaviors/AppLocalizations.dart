@@ -11,8 +11,9 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationDelegate();
   late Map<String, String> _localizedString;
 
-  static AppLocalizations? of(BuildContext context){
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  /// ! sta qui perchè sennò lo dovrei ripetere 4 vlte nel widget del Layout
+  static AppLocalizations of(BuildContext context){
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   /// conversione in String
