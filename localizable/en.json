@@ -1,6 +1,10 @@
 {
+  "app_name": "Kcalm",
   "diary": "Diary",
   "add": "Add",
   "weight": "Weight",
-  "profile": "Profile"
+  "profile": "Profile",
+  "welcome_title": "Eat smart, not less",
+  "welcome_subtitle": "A calorie budget suitable for all your meals: the more steps you take, the more space on your plate",
+  "welcome_start": "Get started"
 }

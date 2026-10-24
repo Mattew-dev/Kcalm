@@ -1,6 +1,10 @@
 {
+  "app_name": "Kcalm",
   "diary": "Diario",
   "add": "Aggiungi",
   "weight": "Peso",
-  "profile": "Profilo"
+  "profile": "Profilo",
+  "welcome_title": "Mangia meglio, non meno",
+  "welcome_subtitle": "Un budget calorico che si adatta alla tua giornata: più passi fai, più spazio nel piatto",
+  "welcome_start": "Inizia"
 }

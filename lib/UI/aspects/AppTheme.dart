@@ -19,6 +19,8 @@ class AppTheme{
         secondaryContainer: AppColors.primaryContainerLight,
         onSecondaryContainer: AppColors.onPrimaryContainerLight,
         onSurfaceVariant: AppColors.onSurfaceVariantLight,
+        primaryContainer: AppColors.primaryContainerLight,
+        onPrimaryContainer: AppColors.onPrimaryContainerLight
     )
   );
 
@@ -39,6 +41,8 @@ class AppTheme{
         secondaryContainer: AppColors.primaryContainerDark,
         onSecondaryContainer: AppColors.onPrimaryContainerDark,
         onSurfaceVariant: AppColors.onSurfaceVariantDark,
+        primaryContainer: AppColors.primaryContainerDark,
+        onPrimaryContainer: AppColors.onPrimaryContainerDark
     )
   );
 
