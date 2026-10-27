@@ -16,11 +16,13 @@ class AppTheme{
         surface: AppColors.surfaceLight,
         onSurface: AppColors.onSurfaceLight,
         surfaceContainer: AppColors.surfaceContainerLight,
+        surfaceContainerLowest: AppColors.surfaceContainerLowestLight,
         secondaryContainer: AppColors.primaryContainerLight,
         onSecondaryContainer: AppColors.onPrimaryContainerLight,
         onSurfaceVariant: AppColors.onSurfaceVariantLight,
         primaryContainer: AppColors.primaryContainerLight,
-        onPrimaryContainer: AppColors.onPrimaryContainerLight
+        onPrimaryContainer: AppColors.onPrimaryContainerLight,
+        outline: AppColors.outlineLight,
     )
   );
 
@@ -38,11 +40,13 @@ class AppTheme{
         surface: AppColors.surfaceDark,
         onSurface: AppColors.onSurfaceDark,
         surfaceContainer: AppColors.surfaceContainerDark,
+        surfaceContainerLowest: AppColors.surfaceContainerLowestDark,
         secondaryContainer: AppColors.primaryContainerDark,
         onSecondaryContainer: AppColors.onPrimaryContainerDark,
         onSurfaceVariant: AppColors.onSurfaceVariantDark,
         primaryContainer: AppColors.primaryContainerDark,
-        onPrimaryContainer: AppColors.onPrimaryContainerDark
+        onPrimaryContainer: AppColors.onPrimaryContainerDark,
+        outline: AppColors.outlineDark,
     )
   );
 

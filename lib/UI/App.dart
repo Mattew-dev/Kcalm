@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kcalm/UI/behaviors/AppLocalizations.dart';
 import 'package:kcalm/UI/pages/onboarding/WelcomePage.dart';
-import 'package:kcalm/UI/pages/Layout.dart';
 import 'package:kcalm/UI/aspects/AppTheme.dart';
 
 class App extends StatelessWidget{

@@ -1,10 +1,23 @@
 {
   "app_name": "Kcalm",
+
   "diary": "Diario",
   "add": "Aggiungi",
   "weight": "Peso",
   "profile": "Profilo",
+
   "welcome_title": "Mangia meglio, non meno",
   "welcome_subtitle": "Un budget calorico che si adatta alla tua giornata: più passi fai, più spazio nel piatto",
-  "welcome_start": "Inizia"
+  "welcome_start": "Inizia",
+
+  "onboarding_step1": "Passo 1 di 2",
+  "goal_title": "Qual è il tuo obiettivo?",
+  "goal_subtitle": "Adatteremo il tuo budget giornaliero. Puoi cambiarlo quando vuoi.",
+  "goal_lose": "Dimagrire",
+  "goal_lose_desc": "Deficit graduale, circa 0,4 kg a settimana",
+  "goal_keep": "Mantenere",
+  "goal_keep_desc": "Resta dove sei, mangiando in equilibrio",
+  "goal_gain": "Aumentare",
+  "goal_gain_desc": "Surplus costante per crescere",
+  "continue": "Continua"
 }

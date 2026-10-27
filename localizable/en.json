@@ -1,10 +1,24 @@
 {
   "app_name": "Kcalm",
+
   "diary": "Diary",
   "add": "Add",
   "weight": "Weight",
   "profile": "Profile",
+
   "welcome_title": "Eat smart, not less",
-  "welcome_subtitle": "A calorie budget suitable for all your meals: the more steps you take, the more space on your plate",
-  "welcome_start": "Get started"
+  "welcome_subtitle": "A calorie budget that adapts to your day: the more steps you take, the more room on your plate",
+  "welcome_start": "Get started",
+
+  "onboarding_step1": "Step 1 of 2",
+  "goal_title": "What's your goal?",
+  "goal_subtitle": "We'll shape your daily budget around it. You can change it anytime.",
+  "goal_lose": "Lose weight",
+  "goal_lose_desc": "Gentle deficit, about 0.4 kg a week",
+  "goal_keep": "Maintain",
+  "goal_keep_desc": "Stay where you are, eat with balance",
+  "goal_gain": "Gain weight",
+  "goal_gain_desc": "Steady surplus to build up",
+  "continue": "Continue"
+
 }

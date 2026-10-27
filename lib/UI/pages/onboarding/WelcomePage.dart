@@ -35,11 +35,11 @@ class WelcomePage extends StatelessWidget {
                   textAlign: TextAlign.center
                 ),
                 const SizedBox(height: 12),
-                Text(
-                 testi.translate('welcome_subtitle'),
-                 style: stili.bodyLarge?.copyWith(color:colori.onSurfaceVariant),
-                 textAlign: TextAlign.center,
-                ),
+                  Text(
+                   testi.translate('welcome_subtitle'),
+                   style: stili.bodyLarge?.copyWith(color:colori.onSurfaceVariant),
+                   textAlign: TextAlign.center,
+                  ),
                 const Spacer(),
                 SizedBox(
                   width: double.infinity,
