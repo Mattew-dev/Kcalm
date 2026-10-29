@@ -19,5 +19,27 @@
   "goal_keep_desc": "Resta dove sei, mangiando in equilibrio",
   "goal_gain": "Aumentare",
   "goal_gain_desc": "Surplus costante per crescere",
-  "continue": "Continua"
+  "continue": "Continua",
+
+  "onboarding_step2": "Passo 2 di 2",
+  "about_title": "Parlaci di te",
+  "about_subtitle": "Ci servono solo per calcolare il tuo budget calorico.",
+  "sex_uomo": "Uomo",
+  "sex_donna": "Donna",
+  "age": "Età",
+  "height": "Altezza (cm)",
+  "weightt": "Peso (kg)",
+  "goal_weight": "Peso obiettivo (kg)",
+  "activity_sedentario": "Sedentario",
+  "activity_leggermenteAttivo": "Leggermente attivo",
+  "activity_moderato": "Moderatamente attivo",
+  "activity_moltoAttivo": "Molto attivo",
+  "budget_preview": "Il tuo budget di partenza:",
+  "kcal_day": "kcal al giorno",
+  "fill_data": "Completa i dati per vedere il tuo budget",
+  "start_traking": "Inizia a monitorare",
+  "errore_eta": "Inserisci un'età tra 14 e 90 anni",
+  "errore_altezza": "Inserisci un'altezza tra 100 e 250 cm",
+  "errore_peso": "Inserisci un peso tra 30 e 300 kg",
+  "errore_pesoOiettivo": "Inserisci un peso obiettivo tra 30 e 300 kg"
 }

@@ -19,6 +19,27 @@
   "goal_keep_desc": "Stay where you are, eat with balance",
   "goal_gain": "Gain weight",
   "goal_gain_desc": "Steady surplus to build up",
-  "continue": "Continue"
+  "continue": "Continue",
 
+  "onboarding_step2": "Step 2 of 2",
+  "about_title": "About you",
+  "about_subtitle": "We only use these to calculate your calorie budget.",
+  "sex_uomo": "Male",
+  "sex_donna": "Female",
+  "age": "Age",
+  "height": "Height (cm)",
+  "weightt": "Weight (kg)",
+  "goal_weight": "Goal weight (kg)",
+  "activity_sedentario": "Sedentary",
+  "activity_leggermenteAttivo": "Lightly active",
+  "activity_moderato": "Moderately active",
+  "activity_moltoAttivo": "Very active",
+  "budget_preview": "Your starting budget:",
+  "kcal_day": "kcal per day",
+  "fill_data": "Fill in your details to see your budget",
+  "start_traking": "Start tracking",
+  "errore_eta": "Enter an age between 14 and 90",
+  "errore_altezza": "Enter a height between 100 and 250 cm",
+  "errore_peso": "Enter a weight between 30 and 300 kg",
+  "errore_pesoOiettivo": "Enter a goal weight between 30 and 300 kg"
 }
