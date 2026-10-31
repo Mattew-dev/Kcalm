@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kcalm/UI/behaviors/AppLocalizations.dart';
+import 'package:kcalm/UI/pages/Layout.dart';
 import 'package:kcalm/UI/pages/onboarding/WelcomePage.dart';
 import 'package:kcalm/UI/aspects/AppTheme.dart';
 
 class App extends StatelessWidget{
-  const App({super.key});
+
+  final bool primoAvvio;
+
+  const App({
+    super.key,
+    required this.primoAvvio
+  });
+
+
 
   @override
   Widget build(BuildContext context){
@@ -24,7 +33,7 @@ class App extends StatelessWidget{
       theme: AppTheme.chiaro,
       darkTheme: AppTheme.scuro,
       themeMode: ThemeMode.system,
-      home: const WelcomePage(),
+      home: primoAvvio ? const WelcomePage() : const Layout(), //se è il primo avvio mostra WelcomePage
     );
   }
 }

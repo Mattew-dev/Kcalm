@@ -3,9 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kcalm/model/objects/Enums.dart';
 import 'package:kcalm/model/objects/UserProfile.dart';
 import 'package:kcalm/model/providers/ProfileProvider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   group('Profile', () {
+    // il provider salva su SharedPreferences: nei test uso una memoria finta e vuota
+    setUp(() {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences.setMockInitialValues({});
+    });
+
     // profilo caso B
     const profilo = UserProfile(
       sesso: Sex.uomo,
