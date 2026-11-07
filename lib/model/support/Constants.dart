@@ -13,7 +13,14 @@ class LimitiProfilo{
 ///STORAGE
 class ChiaviStorage {
   ChiaviStorage._();
-
   static const String profilo = 'profilo_utente';
 }
+
+///DATABASE CONFIG
+class ConfigDatabase {
+  ConfigDatabase._();
+  static const String nome = 'kcalm.db';
+  static const int versione = 1;
+}
+
 
