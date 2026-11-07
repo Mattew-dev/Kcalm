@@ -11,7 +11,7 @@ abstract class UserProfile with _$UserProfile {
 
   const factory UserProfile({
         required Sex sesso,
-        required int eta,
+        required DateTime dataNascita,
         required double altezzaCm,
         required double pesoKg,
         required ActivityLevel attivita,
@@ -29,5 +29,14 @@ abstract class UserProfile with _$UserProfile {
       attivita: attivita,
       obiettivo: obiettivo,
   );
+
+  int etaAl(DateTime giorno){
+    var anni = giorno.year - dataNascita.year;
+    final ricorenzaPassata = giorno.month > dataNascita.month || (giorno.month == dataNascita.month && giorno.day >= dataNascita.day);
+    if(!ricorenzaPassata) anni --;
+    return anni;
+  }
+
+  int get eta => etaAl(DateTime.now());
 
 }

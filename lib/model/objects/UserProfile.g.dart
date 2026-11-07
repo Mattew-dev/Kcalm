@@ -8,7 +8,7 @@ part of 'UserProfile.dart';
 
 _UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => _UserProfile(
   sesso: $enumDecode(_$SexEnumMap, json['sesso']),
-  eta: (json['eta'] as num).toInt(),
+  dataNascita: DateTime.parse(json['dataNascita'] as String),
   altezzaCm: (json['altezzaCm'] as num).toDouble(),
   pesoKg: (json['pesoKg'] as num).toDouble(),
   attivita: $enumDecode(_$ActivityLevelEnumMap, json['attivita']),
@@ -19,7 +19,7 @@ _UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => _UserProfile(
 Map<String, dynamic> _$UserProfileToJson(_UserProfile instance) =>
     <String, dynamic>{
       'sesso': _$SexEnumMap[instance.sesso]!,
-      'eta': instance.eta,
+      'dataNascita': instance.dataNascita.toIso8601String(),
       'altezzaCm': instance.altezzaCm,
       'pesoKg': instance.pesoKg,
       'attivita': _$ActivityLevelEnumMap[instance.attivita]!,

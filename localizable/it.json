@@ -26,7 +26,7 @@
   "about_subtitle": "Ci servono solo per calcolare il tuo budget calorico.",
   "sex_uomo": "Uomo",
   "sex_donna": "Donna",
-  "age": "Età",
+  "birth_date": "Data di nascita",
   "height": "Altezza (cm)",
   "weightt": "Peso (kg)",
   "goal_weight": "Peso obiettivo (kg)",
@@ -38,8 +38,7 @@
   "kcal_day": "kcal al giorno",
   "fill_data": "Completa i dati per vedere il tuo budget",
   "start_traking": "Inizia a monitorare",
-  "errore_eta": "Inserisci un'età tra 14 e 90 anni",
   "errore_altezza": "Inserisci un'altezza tra 100 e 250 cm",
   "errore_peso": "Inserisci un peso tra 30 e 300 kg",
-  "errore_pesoOiettivo": "Inserisci un peso obiettivo tra 30 e 300 kg"
+  "errore_pesoObiettivo": "Inserisci un peso obiettivo tra 30 e 300 kg"
 }

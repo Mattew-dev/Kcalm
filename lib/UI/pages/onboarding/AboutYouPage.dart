@@ -5,7 +5,6 @@ import 'package:kcalm/UI/pages/Layout.dart';
 import 'package:kcalm/model/objects/Enums.dart';
 import 'package:kcalm/model/objects/UserProfile.dart';
 import 'package:kcalm/model/providers/ProfileProvider.dart';
-import 'package:kcalm/model/support/BudgetCalculator.dart';
 import 'package:kcalm/model/support/Constants.dart';
 
 class AboutYouPage extends ConsumerStatefulWidget {
@@ -24,16 +23,15 @@ class _AboutYouPageState extends ConsumerState<AboutYouPage> {
   /// STATO DELLA PAGINA
   Sex _sesso = Sex.uomo;
   ActivityLevel _attivita = ActivityLevel.leggermenteAttivo;
+  DateTime? _dataNascita; // null finché l'utente non sceglie la data
 
   /// CONTROLLER
-  final _etaController = TextEditingController();
   final _altezzaController = TextEditingController();
   final _pesoController = TextEditingController();
   final _pesoObiettivoController = TextEditingController();
 
   @override
   void dispose(){
-    _etaController.dispose();
     _altezzaController.dispose();
     _pesoController.dispose();
     _pesoObiettivoController.dispose();
@@ -41,12 +39,18 @@ class _AboutYouPageState extends ConsumerState<AboutYouPage> {
     super.dispose();
   }
 
-  int? get _eta{
-    final x = int.tryParse(_etaController.text.trim());
-    return (x != null &&
-        x >= LimitiProfilo.etaMin &&
-        x <= LimitiProfilo.etaMax) ?
-    x : null;
+  /// DATA DI NASCITA: il calendario accetta solo date dentro i limiti di età
+  Future<void> _scegliDataNascita() async {
+    final oggi = DateTime.now();
+    final scelta = await showDatePicker(
+      context: context,
+      initialDate: _dataNascita ?? DateTime(oggi.year - 25, oggi.month, oggi.day),
+      firstDate: DateTime(oggi.year - LimitiProfilo.etaMax, oggi.month, oggi.day),
+      lastDate: DateTime(oggi.year - LimitiProfilo.etaMin, oggi.month, oggi.day),
+    );
+    if(scelta != null && mounted){
+      setState(() => _dataNascita = scelta);
+    }
   }
 
   double? get _peso{
@@ -76,45 +80,37 @@ class _AboutYouPageState extends ConsumerState<AboutYouPage> {
     x : null;
   }
 
-  ///VALIDA
-  bool get _valido => _eta != null && _altezza != null && _peso != null && _pesoObiettivo != null;
-
-  ///BUDGET
-  int? get _budget{
-    final eta = _eta;
-    final altezza = _altezza;
-    final peso = _peso;
-    if(eta == null || altezza == null || peso == null) return null;
-
-    return BudgetCalculator.dailyBudget(
-        sesso: _sesso,
-        eta: eta,
-        altezzaCm: altezza,
-        pesoKg: peso,
-        attivita: _attivita,
-        obiettivo: widget.obiettivo, //quello ricevuto da GoalPage
-    );
-  }
-
-  ///CONFERMA
-  void _conferma(){
-    final eta = _eta;
+  ///PROFILO completo, null se manca qualcosa
+  UserProfile? get _profilo{
+    final dataNascita = _dataNascita;
     final altezza = _altezza;
     final peso = _peso;
     final pesoObiettivo = _pesoObiettivo;
-    if(eta == null || altezza == null || peso == null || pesoObiettivo == null) return;
+    if(dataNascita == null || altezza == null || peso == null || pesoObiettivo == null) return null;
 
-    ref.read(profileProvider.notifier).impostaProfilo(
-      UserProfile(
-        sesso: _sesso,
-        eta: eta,
-        altezzaCm: altezza,
-        pesoKg: peso,
-        attivita: _attivita,
-        obiettivo: widget.obiettivo,
-        pesoObiettivoKg: pesoObiettivo
-      )
+    return UserProfile(
+      sesso: _sesso,
+      dataNascita: dataNascita,
+      altezzaCm: altezza,
+      pesoKg: peso,
+      attivita: _attivita,
+      obiettivo: widget.obiettivo, //quello ricevuto da GoalPage
+      pesoObiettivoKg: pesoObiettivo,
     );
+  }
+
+  ///VALIDA
+  bool get _valido => _profilo != null;
+
+  ///BUDGET
+  int? get _budget => _profilo?.budgetGiornaliero;
+
+  ///CONFERMA
+  void _conferma(){
+    final profilo = _profilo;
+    if(profilo == null) return;
+
+    ref.read(profileProvider.notifier).impostaProfilo(profilo);
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) =>
@@ -128,6 +124,7 @@ class _AboutYouPageState extends ConsumerState<AboutYouPage> {
     final testi = AppLocalizations.of(context);
     final colori = Theme.of(context).colorScheme;
     final stili = Theme.of(context).textTheme;
+    final dataNascita = _dataNascita;
 
     return Scaffold(
       appBar: AppBar(
@@ -177,15 +174,17 @@ class _AboutYouPageState extends ConsumerState<AboutYouPage> {
                         onSelectionChanged: (scelta) => setState(() => _sesso = scelta.first),
                     ),
                     const SizedBox(height: 20),
-                    TextField(
-                      controller: _etaController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: testi.translate("age"),
-                        border: const OutlineInputBorder(),
-                        errorText: (_etaController.text.isNotEmpty && _eta == null) ? testi.translate('errore_eta') : null,
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: _scegliDataNascita,
+                        icon: const Icon(Icons.calendar_today_outlined),
+                        label: Text(
+                          dataNascita == null
+                              ? testi.translate('birth_date')
+                              : MaterialLocalizations.of(context).formatCompactDate(dataNascita),
+                        ),
                       ),
-                      onChanged: (_) => setState(() {}),
                     ),
                     const SizedBox(height: 12),
                     TextField(

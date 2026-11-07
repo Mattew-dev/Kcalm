@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserProfile {
 
- Sex get sesso; int get eta; double get altezzaCm; double get pesoKg; ActivityLevel get attivita; Goal get obiettivo; double get pesoObiettivoKg;
+ Sex get sesso; DateTime get dataNascita; double get altezzaCm; double get pesoKg; ActivityLevel get attivita; Goal get obiettivo; double get pesoObiettivoKg;
 /// Create a copy of UserProfile
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $UserProfileCopyWith<UserProfile> get copyWith => _$UserProfileCopyWithImpl<User
 @override
 bool operator ==(Object other) {
   final _this = this as UserProfile;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserProfile&&(identical(other.sesso, _this.sesso) || other.sesso == _this.sesso)&&(identical(other.eta, _this.eta) || other.eta == _this.eta)&&(identical(other.altezzaCm, _this.altezzaCm) || other.altezzaCm == _this.altezzaCm)&&(identical(other.pesoKg, _this.pesoKg) || other.pesoKg == _this.pesoKg)&&(identical(other.attivita, _this.attivita) || other.attivita == _this.attivita)&&(identical(other.obiettivo, _this.obiettivo) || other.obiettivo == _this.obiettivo)&&(identical(other.pesoObiettivoKg, _this.pesoObiettivoKg) || other.pesoObiettivoKg == _this.pesoObiettivoKg));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserProfile&&(identical(other.sesso, _this.sesso) || other.sesso == _this.sesso)&&(identical(other.dataNascita, _this.dataNascita) || other.dataNascita == _this.dataNascita)&&(identical(other.altezzaCm, _this.altezzaCm) || other.altezzaCm == _this.altezzaCm)&&(identical(other.pesoKg, _this.pesoKg) || other.pesoKg == _this.pesoKg)&&(identical(other.attivita, _this.attivita) || other.attivita == _this.attivita)&&(identical(other.obiettivo, _this.obiettivo) || other.obiettivo == _this.obiettivo)&&(identical(other.pesoObiettivoKg, _this.pesoObiettivoKg) || other.pesoObiettivoKg == _this.pesoObiettivoKg));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as UserProfile;
-  return Object.hash(runtimeType,_this.sesso,_this.eta,_this.altezzaCm,_this.pesoKg,_this.attivita,_this.obiettivo,_this.pesoObiettivoKg);
+  return Object.hash(runtimeType,_this.sesso,_this.dataNascita,_this.altezzaCm,_this.pesoKg,_this.attivita,_this.obiettivo,_this.pesoObiettivoKg);
 }
 
 @override
 String toString() {
   final _this = this as UserProfile;
-  return 'UserProfile(sesso: ${_this.sesso}, eta: ${_this.eta}, altezzaCm: ${_this.altezzaCm}, pesoKg: ${_this.pesoKg}, attivita: ${_this.attivita}, obiettivo: ${_this.obiettivo}, pesoObiettivoKg: ${_this.pesoObiettivoKg})';
+  return 'UserProfile(sesso: ${_this.sesso}, dataNascita: ${_this.dataNascita}, altezzaCm: ${_this.altezzaCm}, pesoKg: ${_this.pesoKg}, attivita: ${_this.attivita}, obiettivo: ${_this.obiettivo}, pesoObiettivoKg: ${_this.pesoObiettivoKg})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $UserProfileCopyWith<$Res>  {
   factory $UserProfileCopyWith(UserProfile value, $Res Function(UserProfile) _then) = _$UserProfileCopyWithImpl;
 @useResult
 $Res call({
- Sex sesso, int eta, double altezzaCm, double pesoKg, ActivityLevel attivita, Goal obiettivo, double pesoObiettivoKg
+ Sex sesso, DateTime dataNascita, double altezzaCm, double pesoKg, ActivityLevel attivita, Goal obiettivo, double pesoObiettivoKg
 });
 
 
@@ -71,11 +71,11 @@ class _$UserProfileCopyWithImpl<$Res>
 
 /// Create a copy of UserProfile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? sesso = null,Object? eta = null,Object? altezzaCm = null,Object? pesoKg = null,Object? attivita = null,Object? obiettivo = null,Object? pesoObiettivoKg = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? sesso = null,Object? dataNascita = null,Object? altezzaCm = null,Object? pesoKg = null,Object? attivita = null,Object? obiettivo = null,Object? pesoObiettivoKg = null,}) {
   return _then(UserProfile(
 sesso: null == sesso ? _self.sesso : sesso // ignore: cast_nullable_to_non_nullable
-as Sex,eta: null == eta ? _self.eta : eta // ignore: cast_nullable_to_non_nullable
-as int,altezzaCm: null == altezzaCm ? _self.altezzaCm : altezzaCm // ignore: cast_nullable_to_non_nullable
+as Sex,dataNascita: null == dataNascita ? _self.dataNascita : dataNascita // ignore: cast_nullable_to_non_nullable
+as DateTime,altezzaCm: null == altezzaCm ? _self.altezzaCm : altezzaCm // ignore: cast_nullable_to_non_nullable
 as double,pesoKg: null == pesoKg ? _self.pesoKg : pesoKg // ignore: cast_nullable_to_non_nullable
 as double,attivita: null == attivita ? _self.attivita : attivita // ignore: cast_nullable_to_non_nullable
 as ActivityLevel,obiettivo: null == obiettivo ? _self.obiettivo : obiettivo // ignore: cast_nullable_to_non_nullable
@@ -165,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Sex sesso,  int eta,  double altezzaCm,  double pesoKg,  ActivityLevel attivita,  Goal obiettivo,  double pesoObiettivoKg)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Sex sesso,  DateTime dataNascita,  double altezzaCm,  double pesoKg,  ActivityLevel attivita,  Goal obiettivo,  double pesoObiettivoKg)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserProfile() when $default != null:
-return $default(_that.sesso,_that.eta,_that.altezzaCm,_that.pesoKg,_that.attivita,_that.obiettivo,_that.pesoObiettivoKg);case _:
+return $default(_that.sesso,_that.dataNascita,_that.altezzaCm,_that.pesoKg,_that.attivita,_that.obiettivo,_that.pesoObiettivoKg);case _:
   return orElse();
 
 }
@@ -186,10 +186,10 @@ return $default(_that.sesso,_that.eta,_that.altezzaCm,_that.pesoKg,_that.attivit
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Sex sesso,  int eta,  double altezzaCm,  double pesoKg,  ActivityLevel attivita,  Goal obiettivo,  double pesoObiettivoKg)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Sex sesso,  DateTime dataNascita,  double altezzaCm,  double pesoKg,  ActivityLevel attivita,  Goal obiettivo,  double pesoObiettivoKg)  $default,) {final _that = this;
 switch (_that) {
 case _UserProfile():
-return $default(_that.sesso,_that.eta,_that.altezzaCm,_that.pesoKg,_that.attivita,_that.obiettivo,_that.pesoObiettivoKg);case _:
+return $default(_that.sesso,_that.dataNascita,_that.altezzaCm,_that.pesoKg,_that.attivita,_that.obiettivo,_that.pesoObiettivoKg);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -206,10 +206,10 @@ return $default(_that.sesso,_that.eta,_that.altezzaCm,_that.pesoKg,_that.attivit
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Sex sesso,  int eta,  double altezzaCm,  double pesoKg,  ActivityLevel attivita,  Goal obiettivo,  double pesoObiettivoKg)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Sex sesso,  DateTime dataNascita,  double altezzaCm,  double pesoKg,  ActivityLevel attivita,  Goal obiettivo,  double pesoObiettivoKg)?  $default,) {final _that = this;
 switch (_that) {
 case _UserProfile() when $default != null:
-return $default(_that.sesso,_that.eta,_that.altezzaCm,_that.pesoKg,_that.attivita,_that.obiettivo,_that.pesoObiettivoKg);case _:
+return $default(_that.sesso,_that.dataNascita,_that.altezzaCm,_that.pesoKg,_that.attivita,_that.obiettivo,_that.pesoObiettivoKg);case _:
   return null;
 
 }
@@ -221,11 +221,11 @@ return $default(_that.sesso,_that.eta,_that.altezzaCm,_that.pesoKg,_that.attivit
 @JsonSerializable()
 
 class _UserProfile extends UserProfile {
-  const _UserProfile({required this.sesso, required this.eta, required this.altezzaCm, required this.pesoKg, required this.attivita, required this.obiettivo, required this.pesoObiettivoKg}): super._();
+  const _UserProfile({required this.sesso, required this.dataNascita, required this.altezzaCm, required this.pesoKg, required this.attivita, required this.obiettivo, required this.pesoObiettivoKg}): super._();
   factory _UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
 
 @override final  Sex sesso;
-@override final  int eta;
+@override final  DateTime dataNascita;
 @override final  double altezzaCm;
 @override final  double pesoKg;
 @override final  ActivityLevel attivita;
@@ -245,18 +245,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserProfile&&(identical(other.sesso, sesso) || other.sesso == sesso)&&(identical(other.eta, eta) || other.eta == eta)&&(identical(other.altezzaCm, altezzaCm) || other.altezzaCm == altezzaCm)&&(identical(other.pesoKg, pesoKg) || other.pesoKg == pesoKg)&&(identical(other.attivita, attivita) || other.attivita == attivita)&&(identical(other.obiettivo, obiettivo) || other.obiettivo == obiettivo)&&(identical(other.pesoObiettivoKg, pesoObiettivoKg) || other.pesoObiettivoKg == pesoObiettivoKg));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserProfile&&(identical(other.sesso, sesso) || other.sesso == sesso)&&(identical(other.dataNascita, dataNascita) || other.dataNascita == dataNascita)&&(identical(other.altezzaCm, altezzaCm) || other.altezzaCm == altezzaCm)&&(identical(other.pesoKg, pesoKg) || other.pesoKg == pesoKg)&&(identical(other.attivita, attivita) || other.attivita == attivita)&&(identical(other.obiettivo, obiettivo) || other.obiettivo == obiettivo)&&(identical(other.pesoObiettivoKg, pesoObiettivoKg) || other.pesoObiettivoKg == pesoObiettivoKg));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,sesso,eta,altezzaCm,pesoKg,attivita,obiettivo,pesoObiettivoKg);
+    return Object.hash(runtimeType,sesso,dataNascita,altezzaCm,pesoKg,attivita,obiettivo,pesoObiettivoKg);
 }
 
 @override
 String toString() {
-    return 'UserProfile(sesso: $sesso, eta: $eta, altezzaCm: $altezzaCm, pesoKg: $pesoKg, attivita: $attivita, obiettivo: $obiettivo, pesoObiettivoKg: $pesoObiettivoKg)';
+    return 'UserProfile(sesso: $sesso, dataNascita: $dataNascita, altezzaCm: $altezzaCm, pesoKg: $pesoKg, attivita: $attivita, obiettivo: $obiettivo, pesoObiettivoKg: $pesoObiettivoKg)';
 }
 
 
@@ -267,7 +267,7 @@ abstract mixin class _$UserProfileCopyWith<$Res> implements $UserProfileCopyWith
   factory _$UserProfileCopyWith(_UserProfile value, $Res Function(_UserProfile) _then) = __$UserProfileCopyWithImpl;
 @override @useResult
 $Res call({
- Sex sesso, int eta, double altezzaCm, double pesoKg, ActivityLevel attivita, Goal obiettivo, double pesoObiettivoKg
+ Sex sesso, DateTime dataNascita, double altezzaCm, double pesoKg, ActivityLevel attivita, Goal obiettivo, double pesoObiettivoKg
 });
 
 
@@ -284,11 +284,11 @@ class __$UserProfileCopyWithImpl<$Res>
 
 /// Create a copy of UserProfile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? sesso = null,Object? eta = null,Object? altezzaCm = null,Object? pesoKg = null,Object? attivita = null,Object? obiettivo = null,Object? pesoObiettivoKg = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? sesso = null,Object? dataNascita = null,Object? altezzaCm = null,Object? pesoKg = null,Object? attivita = null,Object? obiettivo = null,Object? pesoObiettivoKg = null,}) {
   return _then(_UserProfile(
 sesso: null == sesso ? _self.sesso : sesso // ignore: cast_nullable_to_non_nullable
-as Sex,eta: null == eta ? _self.eta : eta // ignore: cast_nullable_to_non_nullable
-as int,altezzaCm: null == altezzaCm ? _self.altezzaCm : altezzaCm // ignore: cast_nullable_to_non_nullable
+as Sex,dataNascita: null == dataNascita ? _self.dataNascita : dataNascita // ignore: cast_nullable_to_non_nullable
+as DateTime,altezzaCm: null == altezzaCm ? _self.altezzaCm : altezzaCm // ignore: cast_nullable_to_non_nullable
 as double,pesoKg: null == pesoKg ? _self.pesoKg : pesoKg // ignore: cast_nullable_to_non_nullable
 as double,attivita: null == attivita ? _self.attivita : attivita // ignore: cast_nullable_to_non_nullable
 as ActivityLevel,obiettivo: null == obiettivo ? _self.obiettivo : obiettivo // ignore: cast_nullable_to_non_nullable
