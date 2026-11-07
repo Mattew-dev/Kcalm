@@ -1,7 +1,9 @@
+import 'package:kcalm/model/objects/UserProfile.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:kcalm/model/support/Constants.dart';
+import 'package:kcalm/model/objects/Enums.dart';
 
 class DatabaseManager{
 
@@ -114,6 +116,57 @@ class DatabaseManager{
     final db = await _initDatabase();
     final righe = await db.rawQuery('PRAGMA foreign_keys');
     return righe.first['foreign_keys'] == 1;
+  }
+
+  ///crea profilo
+  Future<void> creaProfilo(UserProfile profilo) async{
+    final db = await _initDatabase();
+    final oggi = DateTime.now();
+    final giorno = DateTime(oggi.year, oggi.month, oggi.day);
+
+    await db.transaction((tn) async{
+      await tn.insert('profilo',{
+        'id':1,
+        'sesso': profilo.sesso.name,
+        'data_nascita_ms': profilo.dataNascita.millisecondsSinceEpoch,
+        'altezza_cm': profilo.altezzaCm,
+        'peso_iniziale_kg': profilo.pesoKg,
+        'peso_obiettivo_kg': profilo.pesoObiettivoKg,
+        'attivita': profilo.attivita.name,
+        'obiettivo': profilo.obiettivo.name
+      });
+      await tn.insert('pesi', {
+        'peso_kg': profilo.pesoKg,
+        'data_ms': giorno.millisecondsSinceEpoch,
+        'registrato_ms': oggi.millisecondsSinceEpoch
+      });
+    });
+  }
+
+  ///carica profilo
+  Future<UserProfile?> caricaProfilo() async{
+    final db = await _initDatabase();
+
+    final righe = await db.rawQuery('SELECT * FROM profilo WHERE id = ?', [1]);
+    if(righe.isEmpty) return null;
+    final riga = righe.first;
+    final pesate = await db.rawQuery(
+      'SELECT peso_kg FROM pesi ORDER BY data_ms DESC, registrato_ms DESC LIMIT 1'
+    );
+    //se esiste una pesata usa quella altrimenti è il peso iniziale
+    final pesoAttuale = (pesate.isNotEmpty ? pesate.first['peso_kg']
+    : riga['peso_iniziale_kg']) as num;
+
+    return UserProfile(
+      sesso: Sex.values.byName(riga['sesso'] as String),
+      dataNascita:
+        DateTime.fromMillisecondsSinceEpoch(riga['data_nascita_ms'] as int),
+          altezzaCm: (riga['altezza_cm'] as num).toDouble(),
+          pesoKg: pesoAttuale.toDouble(),
+          attivita: ActivityLevel.values.byName(riga['attivita'] as String),
+          obiettivo: Goal.values.byName(riga['obiettivo'] as String),
+          pesoObiettivoKg: (riga['peso_obiettivo_kg'] as num).toDouble()
+    );
   }
 
   ///chiusura db
