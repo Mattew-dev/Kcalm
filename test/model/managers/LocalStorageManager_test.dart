@@ -13,9 +13,9 @@ void main() {
     });
 
     // profilo caso B
-    const profilo = UserProfile(
+    final profilo = UserProfile(
       sesso: Sex.uomo,
-      eta: 27,
+      dataNascita: DateTime(DateTime.now().year - 27, 1, 1),
       altezzaCm: 178,
       pesoKg: 74.2,
       attivita: ActivityLevel.leggermenteAttivo,
