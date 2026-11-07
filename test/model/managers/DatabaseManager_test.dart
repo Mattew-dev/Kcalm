@@ -59,6 +59,22 @@ void main(){
 
       expect(manager.creaProfilo(profilo), throwsA(anything));
     });
+
+    test('aggiungiPesata cambia il peso attuale', () async{
+      await manager.creaProfilo(profilo);
+      await manager.aggiungiPesata(72);
+
+      final caricato = await manager.caricaProfilo();
+      expect(caricato?.pesoKg, 72);
+    });
+
+    test('aggiornaProfilo cambia l obiettivo', () async{
+      await manager.creaProfilo(profilo);
+      await manager.aggiornaProfilo(profilo.copyWith(obiettivo: Goal.mantenere));
+
+      final caricato = await manager.caricaProfilo();
+      expect(caricato?.obiettivo, Goal.mantenere);
+    });
   });
 
 }

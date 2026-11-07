@@ -10,12 +10,6 @@ class LimitiProfilo{
   static const double pesoMax = 300;
 }
 
-///STORAGE
-class ChiaviStorage {
-  ChiaviStorage._();
-  static const String profilo = 'profilo_utente';
-}
-
 ///DATABASE CONFIG
 class ConfigDatabase {
   ConfigDatabase._();

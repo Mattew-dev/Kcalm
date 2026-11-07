@@ -12,7 +12,7 @@ Future<void> main() async{
   //contenitore Riverpod, posso mettere dentro il dato
   final container = ProviderContainer();
   if(profilo != null){
-    container.read(profileProvider.notifier).impostaProfilo(profilo);
+    container.read(profileProvider.notifier).ripristinaProfilo(profilo);
   }
 
   runApp(

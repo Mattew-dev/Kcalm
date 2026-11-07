@@ -106,11 +106,12 @@ class _AboutYouPageState extends ConsumerState<AboutYouPage> {
   int? get _budget => _profilo?.budgetGiornaliero;
 
   ///CONFERMA
-  void _conferma(){
+  Future<void> _conferma() async{
     final profilo = _profilo;
     if(profilo == null) return;
 
-    ref.read(profileProvider.notifier).impostaProfilo(profilo);
+    await ref.read(profileProvider.notifier).impostaProfilo(profilo);
+    if(!mounted) return;
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) =>

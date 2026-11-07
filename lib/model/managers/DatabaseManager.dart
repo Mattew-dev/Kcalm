@@ -151,7 +151,7 @@ class DatabaseManager{
     if(righe.isEmpty) return null;
     final riga = righe.first;
     final pesate = await db.rawQuery(
-      'SELECT peso_kg FROM pesi ORDER BY data_ms DESC, registrato_ms DESC LIMIT 1'
+      'SELECT peso_kg FROM pesi ORDER BY data_ms DESC, registrato_ms DESC, id DESC LIMIT 1'
     );
     //se esiste una pesata usa quella altrimenti è il peso iniziale
     final pesoAttuale = (pesate.isNotEmpty ? pesate.first['peso_kg']
@@ -169,13 +169,42 @@ class DatabaseManager{
     );
   }
 
+  ///aggiungi pesata
+  Future<void> aggiungiPesata(double peso) async{
+    final db = await _initDatabase();
+    final oggi = DateTime.now();
+    final giorno = DateTime(oggi.year, oggi.month, oggi.day);
+
+    await db.insert('pesi', {
+      'peso_kg': peso,
+      'data_ms': giorno.millisecondsSinceEpoch,
+      'registrato_ms': oggi.millisecondsSinceEpoch
+    });
+  }
+
+  ///aggiorno il profilo
+  Future<void> aggiornaProfilo(UserProfile profilo) async {
+    final db = await _initDatabase();
+
+    await db.update(
+      'profilo',
+      {
+        'sesso': profilo.sesso.name,
+        'data_nascita_ms': profilo.dataNascita.millisecondsSinceEpoch,
+        'altezza_cm': profilo.altezzaCm,
+        'peso_obiettivo_kg': profilo.pesoObiettivoKg,
+        'attivita': profilo.attivita.name,
+        'obiettivo': profilo.obiettivo.name
+      },
+      where: 'id = ?',
+      whereArgs: [1],
+    );
+  }
+
   ///chiusura db
   Future<void> chiudi() async{
     await _database?.close();
     _database = null;
   }
-
-
-
 
 }

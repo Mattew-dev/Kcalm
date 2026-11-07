@@ -5,7 +5,7 @@ import 'package:kcalm/model/Model.dart';
 
 part 'ProfileProvider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Profile extends _$Profile{
 
   @override
@@ -13,32 +13,38 @@ class Profile extends _$Profile{
     return null;
   }
 
-  void impostaProfilo(UserProfile profilo){
-     state = profilo;
-     Model.instance.salvaProfilo(profilo);
+  //all'avvio il profilo è già salvato ed imposto solo lo stato
+  void ripristinaProfilo(UserProfile profilo){
+    state = profilo;
   }
 
-  void aggiornaPeso(double nuovoPeso){
-      final attuale = state;
-      if(attuale == null) return;
-      final aggiornato = attuale.copyWith(pesoKg: nuovoPeso);
-      state = aggiornato;
-      Model.instance.salvaProfilo(aggiornato);
+  //fine onboarding: creo il profilo nel db
+  Future<void> impostaProfilo(UserProfile profilo) async{
+    state = profilo;
+    await Model.instance.creaProfilo(profilo);
   }
 
-  void aggiornaObiettivo(Goal nuovoObiettivo){
+  Future<void> aggiornaPeso(double nuovoPeso) async{
+    final attuale = state;
+    if(attuale == null) return;
+    state = attuale.copyWith(pesoKg: nuovoPeso);
+    await Model.instance.aggiungiPesata(nuovoPeso);
+  }
+
+  Future<void> aggiornaObiettivo(Goal nuovoObiettivo) async{
     final attuale = state;
     if(attuale == null) return;
     final aggiornato = attuale.copyWith(obiettivo: nuovoObiettivo);
     state = aggiornato;
-    Model.instance.salvaProfilo(aggiornato);
+    await Model.instance.aggiornaProfilo(aggiornato);
   }
 
-  void aggiornaAttivita(ActivityLevel nuovoLivelloAttivita){
+  Future<void> aggiornaAttivita(ActivityLevel nuovaAttivita) async{
     final attuale = state;
-    if(attuale==null)return;
-    final aggiornato = attuale.copyWith(attivita: nuovoLivelloAttivita);
+    if(attuale == null) return;
+    final aggiornato = attuale.copyWith(attivita: nuovaAttivita);
     state = aggiornato;
-    Model.instance.salvaProfilo(aggiornato);
+    await Model.instance.aggiornaProfilo(aggiornato);
   }
+
 }
