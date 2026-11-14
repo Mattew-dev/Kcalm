@@ -40,5 +40,11 @@
   "start_traking": "Start tracking",
   "errore_altezza": "Enter a height between 100 and 250 cm",
   "errore_peso": "Enter a weight between 30 and 300 kg",
-  "errore_pesoObiettivo": "Enter a goal weight between 30 and 300 kg"
+  "errore_pesoObiettivo": "Enter a goal weight between 30 and 300 kg",
+
+  "today": "Today",
+  "kcal_remaining": "kcal left",
+  "eaten": "Eaten",
+  "burned": "Burned",
+  "budget": "Budget"
 }

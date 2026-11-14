@@ -40,5 +40,11 @@
   "start_traking": "Inizia a monitorare",
   "errore_altezza": "Inserisci un'altezza tra 100 e 250 cm",
   "errore_peso": "Inserisci un peso tra 30 e 300 kg",
-  "errore_pesoObiettivo": "Inserisci un peso obiettivo tra 30 e 300 kg"
+  "errore_pesoObiettivo": "Inserisci un peso obiettivo tra 30 e 300 kg",
+
+  "today": "Oggi",
+  "kcal_remaining": "kcal rimanenti",
+  "eaten": "Mangiate",
+  "burned": "Bruciate",
+  "budget": "Budget"
 }

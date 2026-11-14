@@ -23,6 +23,7 @@ class AppTheme{
         primaryContainer: AppColors.primaryContainerLight,
         onPrimaryContainer: AppColors.onPrimaryContainerLight,
         outline: AppColors.outlineLight,
+        surfaceContainerHigh: AppColors.surfaceContainerHighLight
     )
   );
 
@@ -47,6 +48,7 @@ class AppTheme{
         primaryContainer: AppColors.primaryContainerDark,
         onPrimaryContainer: AppColors.onPrimaryContainerDark,
         outline: AppColors.outlineDark,
+        surfaceContainerHigh: AppColors.surfaceContainerHighDark
     )
   );
 
