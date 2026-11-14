@@ -1,3 +1,5 @@
+import 'package:kcalm/model/objects/DiaryEntry.dart';
+import 'package:kcalm/model/objects/Food.dart';
 import 'package:kcalm/model/objects/UserProfile.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -207,4 +209,85 @@ class DatabaseManager{
     _database = null;
   }
 
+  /// salva alimento
+  Future<int> salvaAlimento(Food alimento) async{
+    final db = await _initDatabase();
+
+    final codice = alimento.codiceBarre;
+    if(codice != null){
+      final esistenti = await db.rawQuery(
+        'SELECT id FROM alimenti WHERE codice_barre = ?', [codice]
+      );
+      if(esistenti.isNotEmpty) return esistenti.first['id'] as int;
+    }
+    return db.insert('alimenti', {
+      'codice_barre': codice,
+      'nome': alimento.nome,
+      'marca': alimento.marca,
+      'unita': alimento.unita.name,
+      'kcal_100': alimento.kcal100,
+      'carboidrati_100': alimento.carboidrati100,
+      'proteine_100': alimento.proteine100,
+      'grassi_100': alimento.grassi100,
+    });
+  }
+
+  /// aggiungi voce
+  Future<int> aggiungiVoce(DiaryEntry diario) async{
+    final db = await _initDatabase();
+    final alimentoId = diario.alimento.id ?? await salvaAlimento(diario.alimento);
+
+    return db.insert('diario', {
+      'alimento_id': alimentoId,
+      'pasto': diario.pasto.name,
+      'quantita': diario.quantita,
+      'kcal': diario.kcal,
+      'carboidrati_g': diario.carboidratiG,
+      'proteine_g': diario.proteineG,
+      'grassi_g': diario.grassiG,
+      'data_ms': diario.giorno.millisecondsSinceEpoch,
+      'registrato_ms': diario.registrato.millisecondsSinceEpoch,
+    });
+  }
+
+  /// voci del giorno
+  Future<List<DiaryEntry>> vociDelGiorno(DateTime giorno) async{
+    final db = await _initDatabase();
+    final inizio = DateTime(giorno.year, giorno.month, giorno.day);
+    final fine = DateTime(giorno.year, giorno.month, giorno.day+1);
+
+    final righe = await db.rawQuery('''
+      SELECT d.id, d.alimento_id, d.pasto, d.quantita, d.kcal,
+             d.carboidrati_g, d.proteine_g, d.grassi_g, d.data_ms, d.registrato_ms,
+             a.codice_barre, a.nome, a.marca, a.unita,
+             a.kcal_100, a.carboidrati_100, a.proteine_100, a.grassi_100
+      FROM diario d
+      JOIN alimenti a ON a.id = d.alimento_id
+      WHERE d.data_ms >= ? AND d.data_ms < ?
+      ORDER BY d.registrato_ms
+    ''', [inizio.millisecondsSinceEpoch, fine.millisecondsSinceEpoch]);
+
+    return righe.map((riga) => DiaryEntry(
+        id: riga['id'] as int,
+        alimento: Food(
+          id: riga['alimento_id'] as int,
+          codiceBarre: riga['codice_barre'] as String?,
+          marca: riga['marca'] as String?,
+          nome: riga['nome'] as String,
+          unita: Unit.values.byName(riga['unita'] as String),
+          kcal100: (riga['kcal_100'] as num).toDouble(),
+          carboidrati100: (riga['carboidrati_100'] as num).toDouble(),
+          proteine100: (riga['proteine_100'] as num).toDouble(),
+          grassi100: (riga['grassi_100'] as num).toDouble()
+        ),
+        pasto: MealType.values.byName(riga['pasto'] as String),
+        quantita: (riga['quantita'] as num).toDouble(),
+        kcal: (riga['kcal'] as num).toDouble(),
+        carboidratiG: (riga['carboidrati_g'] as num).toDouble(),
+        proteineG: (riga['proteine_g'] as num).toDouble(),
+        grassiG: (riga['grassi_g'] as num).toDouble(),
+        giorno: DateTime.fromMillisecondsSinceEpoch(riga['data_ms'] as int),
+        registrato: DateTime.fromMillisecondsSinceEpoch(riga['registrato_ms'] as int)
+    )).toList();
+  }
 }

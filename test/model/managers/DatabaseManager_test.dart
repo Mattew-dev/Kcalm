@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kcalm/model/managers/DatabaseManager.dart';
+import 'package:kcalm/model/objects/DiaryEntry.dart';
 import 'package:kcalm/model/objects/Enums.dart';
+import 'package:kcalm/model/objects/Food.dart';
 import 'package:kcalm/model/objects/UserProfile.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -74,6 +76,45 @@ void main(){
 
       final caricato = await manager.caricaProfilo();
       expect(caricato?.obiettivo, Goal.mantenere);
+    });
+
+    // penne con codice a barre, valori per 100 g
+    const penne = Food(codiceBarre: '8001', nome: 'Penne rigate', marca: 'Esempio', kcal100: 359, carboidrati100: 71, proteine100: 12.5, grassi100: 2);
+
+    test('salvaAlimento restituisce un id', () async{
+      final id = await manager.salvaAlimento(penne);
+
+      expect(id, greaterThan(0));
+    });
+
+    test('stesso codice a barre -> stesso id', () async{
+      final primo = await manager.salvaAlimento(penne);
+      final secondo = await manager.salvaAlimento(penne);
+
+      expect(secondo, primo);
+    });
+
+    test('aggiungiVoce e vociDelGiorno restituiscono la voce con il suo alimento', () async{
+      final voce = DiaryEntry.daAlimento(alimento: penne, pasto: MealType.pranzo, quantita: 80, momento: DateTime(2026, 11, 6, 13, 5));
+      await manager.aggiungiVoce(voce);
+
+      final voci = await manager.vociDelGiorno(DateTime(2026, 11, 6));
+      expect(voci.length, 1);
+      expect(voci.first.pasto, MealType.pranzo);
+      expect(voci.first.kcal, closeTo(287.2, 0.01));
+      expect(voci.first.registrato, DateTime(2026, 11, 6, 13, 5));
+
+      // l alimento riletto deve essere uguale a quello salvato (a parte l id)
+      final alimento = voci.first.alimento;
+      expect(alimento.copyWith(id: null), penne);
+    });
+
+    test('una voce di ieri non compare oggi', () async{
+      final ieri = DiaryEntry.daAlimento(alimento: penne, pasto: MealType.cena, quantita: 100, momento: DateTime(2026, 11, 5, 20, 30));
+      await manager.aggiungiVoce(ieri);
+
+      expect(await manager.vociDelGiorno(DateTime(2026, 11, 6)), isEmpty);
+      expect((await manager.vociDelGiorno(DateTime(2026, 11, 5))).length, 1);
     });
   });
 
