@@ -23,3 +23,14 @@ enum Goal {
   const Goal(this.deltaKcal);
   final int deltaKcal;
 }
+
+/// Pasti
+enum MealType {
+  colazione,
+  pranzo,
+  cena,
+  spuntino
+}
+
+/// Unità di misura
+enum Unit{g, ml}
