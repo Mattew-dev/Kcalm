@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kcalm/UI/behaviors/AppLocalizations.dart';
-import 'package:kcalm/UI/widgets/GoalCard.dart';
+import 'package:kcalm/UI/widgets/cards/GoalCard.dart';
 import 'package:kcalm/model/objects/Enums.dart';
 import 'package:kcalm/UI/pages/onboarding/AboutYouPage.dart';
 
