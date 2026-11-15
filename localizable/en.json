@@ -46,5 +46,15 @@
   "kcal_remaining": "kcal left",
   "eaten": "Eaten",
   "burned": "Burned",
-  "budget": "Budget"
+  "budget": "Budget",
+
+  "prev_day": "Previous day",
+  "next_day": "Next day",
+  "errore_caricamento": "Couldn't load the diary",
+
+  "meal_colazione": "Breakfast",
+  "meal_pranzo": "Lunch",
+  "meal_cena": "Dinner",
+  "meal_spuntino": "Snack",
+  "no_meal": "No food yet"
 }

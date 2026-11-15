@@ -30,6 +30,7 @@ class App extends StatelessWidget{
         Locale('it'),
         Locale('en'),
       ],
+      scrollBehavior: const MaterialScrollBehavior().copyWith(overscroll: false), //effetto elastico tolto
       theme: AppTheme.chiaro,
       darkTheme: AppTheme.scuro,
       themeMode: ThemeMode.system,
